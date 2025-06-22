@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Xin Coin (TXC) | Decentralized Token Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e1e1e;
+            --secondary: #627eea;
+            --secondary-light: rgba(98, 126, 234, 0.1);
+            --tertiary: #8a6df7;
+            --background: radial-gradient(ellipse at top left, #0f0e17 0%, #1a1a2e 100%);
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --text: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --success: #4ade80;
+            --danger: #f87171;
+            --warning: #fbbf24;
+            --border-radius: 20px;
+            --border-radius-sm: 12px;
+            --box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --glass-blur: blur(16px);
+            --max-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-attachment: fixed;
+        }
+
+        /* Animated background elements */
+        .bg-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.15;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .circle-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--secondary);
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .circle-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--tertiary);
+            top: 60%;
+            left: 70%;
+            animation-delay: 3s;
+        }
+
+        .circle-3 {
+            width: 250px;
+            height: 250px;
+            background: var(--success);
+            top: 30%;
+            left: 80%;
+            animation-delay: 6s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(-50px) translateX(50px);
+            }
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(30, 30, 30, 0.8);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--card-border);
+            position: relative;
+            z-index: 100;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--text) !important;
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .navbar-brand:hover {
+            color: var(--secondary) !important;
+        }
+
+        .navbar-brand i {
+            margin-right: 0.75rem;
+            color: var(--secondary);
+            font-size: 1.8rem;
+        }
+
+        .language-switcher {
+            margin-left: auto;
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .language-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius-sm);
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .language-btn:hover {
+            color: var(--text);
+            background: var(--secondary-light);
+        }
+
+        .language-btn.active {
+            color: var(--secondary);
+            background: var(--secondary-light);
+            font-weight: 600;
+        }
+
+        /* Main container */
+        .main-container {
+            max-width: var(--max-width);
+            margin: 3rem auto;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 0 1.5rem;
+                margin: 2rem auto;
+            }
+        }
+
+        /* Hero section */
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--secondary), var(--tertiary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Card styles */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border: 1px solid var(--card-border);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            transition: var(--transition);
+            animation: slideUp 0.8s ease-out;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-header {
+            background: linear-gradient(90deg, rgba(98, 126, 234, 0.1), rgba(138, 109, 247, 0.1));
+            color: var(--text);
+            padding: 1.75rem 2rem;
+            border-bottom: 1px solid var(--card-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(98, 126, 234, 0.2), rgba(138, 109, 247, 0.2));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .card-header:hover::before {
+            opacity: 1;
+        }
+
+        .card-header h3 {
+            font-weight: 600;
+            margin: 0;
+            position: relative;
+        }
+
+        .card-body {
+            padding: 2.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .card-body {
+                padding: 1.75rem;
+            }
+        }
+
+        /* Button styles */
+        .btn {
+            border-radius: var(--border-radius-sm);
+            padding: 0.875rem 1.75rem;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--secondary), var(--tertiary));
+            color: white;
+            box-shadow: 0 4px 15px rgba(98, 126, 234, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(98, 126, 234, 0.4);
+        }
+
+        .btn-success {
+            background: linear-gradient(90deg, var(--success), #22c55e);
+            color: var(--primary);
+            box-shadow: 0 4px 15px rgba(74, 222, 128, 0.3);
+        }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(74, 222, 128, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--text);
+        }
+
+        /* Status items */
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1.25rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+
+        .status-item:hover {
+            background: rgba(255, 255, 255, 0.02);
+            padding-left: 1rem;
+            padding-right: 1rem;
+            margin-left: -1rem;
+            margin-right: -1rem;
+            border-radius: var(--border-radius-sm);
+        }
+
+        .status-item:last-child {
+            border-bottom: none;
+        }
+
+        .status-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .status-value {
+            font-weight: 600;
+            text-align: right;
+        }
+
+        /* Wallet address */
+        .wallet-address {
+            font-family: 'Roboto Mono', monospace;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius-sm);
+            word-break: break-all;
+            display: inline-block;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .wallet-address:hover {
+            border-color: var(--secondary);
+            background: rgba(98, 126, 234, 0.1);
+        }
+
+        /* Etherscan links */
+        .etherscan-link {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+        
+        .etherscan-link:hover {
+            color: var(--tertiary);
+            text-decoration: underline;
+        }
+        
+        .tx-hash-link {
+            color: var(--secondary);
+            word-break: break-all;
+            background: rgba(98, 126, 234, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius-sm);
+            display: inline-block;
+            margin-top: 0.5rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .tx-hash-link:hover {
+            background: rgba(98, 126, 234, 0.2);
+            text-decoration: underline;
+        }
+
+        /* Text colors */
+        .text-success {
+            color: var(--success) !important;
+        }
+
+        .text-danger {
+            color: var(--danger) !important;
+        }
+
+        .text-warning {
+            color: var(--warning) !important;
+        }
+
+        /* Modal styles */
+        .modal-content {
+            background: var(--card-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--card-border);
+            color: var(--text);
+        }
+
+        .modal-header {
+            border-bottom: 1px solid var(--card-border);
+            padding: 1.5rem 2rem;
+        }
+
+        .modal-title {
+            font-weight: 600;
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-footer {
+            border-top: 1px solid var(--card-border);
+            padding: 1.5rem;
+        }
+
+        .btn-close {
+            filter: invert(1);
+            opacity: 0.7;
+        }
+
+        /* Transaction hash */
+        .tx-hash {
+            font-family: 'Roboto Mono', monospace;
+            word-break: break-all;
+            color: var(--secondary);
+            background: rgba(98, 126, 234, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius-sm);
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer styles */
+        .footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 3rem;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .footer a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer a:hover {
+            color: var(--tertiary);
+            text-decoration: underline;
+        }
+
+        .footer .credits {
+            margin-top: 0.5rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+            
+            .card-body {
+                padding: 1.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .status-item {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .status-value {
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer {
+                padding: 1.5rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Loading spinner */
+        .spinner {
+            display: inline-block;
+            width: 1.5rem;
+            height: 1.5rem;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--secondary);
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Tooltip */
+        .tooltip-inner {
+            background-color: var(--primary);
+            border: 1px solid var(--card-border);
+            border-radius: var(--border-radius-sm);
+            padding: 0.5rem 1rem;
+        }
+
+        .bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before,
+        .bs-tooltip-top .tooltip-arrow::before {
+            border-top-color: var(--primary);
+        }
+
+        /* Progress bar */
+        .progress {
+            background: rgba(255, 255, 255, 0.1);
+            height: 8px;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, var(--secondary), var(--tertiary));
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated background elements -->
+    <div class="bg-elements">
+        <div class="bg-circle circle-1"></div>
+        <div class="bg-circle circle-2"></div>
+        <div class="bg-circle circle-3"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-coins"></i>
+                <span data-i18n="app.title">The Xin Coin</span>
+            </a>
+            <div class="language-switcher">
+                <button class="language-btn active" id="en-btn">EN</button>
+                <button class="language-btn" id="zh-btn">中文</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1 data-i18n="hero.title">TXC Token Portal</h1>
+            <p data-i18n="hero.subtitle">Claim your The Xin Coin tokens and join the decentralized future</p>
+        </section>
+
+        <!-- Claim Card -->
+        <div class="card">
+            <div class="card-header">
+                <h3 data-i18n="card.title">Token Claim</h3>
+            </div>
+            <div class="card-body">
+                <!-- Wallet Not Connected -->
+                <div id="wallet-not-connected" class="text-center">
+                    <p class="mb-4" data-i18n="wallet.connectPrompt">Connect your wallet to claim TXC tokens</p>
+                    <button id="connect-wallet" class="btn btn-primary" data-i18n="wallet.connectButton">
+                        <i class="fas fa-wallet me-2"></i>
+                        Connect Wallet
+                    </button>
+                </div>
+                
+                <!-- Wallet Connected -->
+                <div id="wallet-connected" style="display: none;">
+                    <div class="mb-4">
+                        <h5 class="mb-3" data-i18n="wallet.infoTitle">Wallet Information</h5>
+                        <div class="status-item">
+                            <span class="status-label" data-i18n="wallet.address">Connected Address:</span>
+                            <span class="status-value">
+                                <a href="#" target="_blank" id="wallet-etherscan-link" class="etherscan-link">
+                                    <span class="wallet-address" id="wallet-address"></span>
+                                </a>
+                            </span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label" data-i18n="wallet.claimStatus">Claim Status:</span>
+                            <span class="status-value" id="claim-status"></span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label" data-i18n="wallet.claimAmount">Claimable Amount:</span>
+                            <span class="status-value" id="claim-amount"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h5 class="mb-3" data-i18n="contract.infoTitle">Contract Information</h5>
+                        <div class="status-item">
+                            <span class="status-label" data-i18n="contract.totalSupply">Total Supply:</span>
+                            <span class="status-value" id="total-supply"></span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label" data-i18n="contract.totalClaimed">Total Claimed:</span>
+                            <span class="status-value" id="total-claimed"></span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label" data-i18n="contract.timeLeft">Time Remaining:</span>
+                            <span class="status-value" id="time-left"></span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label" data-i18n="contract.progress">Claim Progress:</span>
+                            <span class="status-value" id="claim-progress"></span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label" data-i18n="contract.etherscan">Contract on Etherscan:</span>
+                            <span class="status-value">
+                                <a href="https://sepolia.etherscan.io/address/0x3637924bfe545d264ec720caf41f8152ee876d1c" target="_blank" class="etherscan-link" data-i18n="action.view">View</a>
+                            </span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" id="progress-bar" role="progressbar"></div>
+                        </div>
+                    </div>
+                    
+                    <button id="claim-tokens" class="btn btn-success w-100 py-3" data-i18n="action.claim">
+                        <i class="fas fa-gift me-2"></i>
+                        Claim TXC Tokens
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Developed by <a href="https://linus-shyu.github.io/" target="_blank">Linus Shyu</a></p>
+            <p class="credits">Sponsored by <a href="https://linus-shyu.github.io/PayTube/" target="_blank">PayTube</a></p>
+        </div>
+    </footer>
+
+    <!-- Transaction Modal -->
+    <div class="modal fade" id="transactionModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="transactionModalTitle" data-i18n="modal.processing">Transaction Processing</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="transactionModalBody">
+                    <div class="text-center py-4">
+                        <div class="spinner"></div>
+                        <p class="mt-3" data-i18n="modal.wait">Please wait for transaction confirmation...</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="action.close">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+    <script>
+        // Contract ABI
+        const contractABI = [
+            {
+                "inputs": [],
+                "stateMutability": "nonpayable",
+                "type": "constructor"
+            },
+            {
+                "inputs": [],
+                "name": "all_claim",
+                "outputs": [
+                    {
+                        "internalType": "uint112",
+                        "name": "",
+                        "type": "uint112"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "claim",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "max_token_number",
+                "outputs": [
+                    {
+                        "internalType": "uint112",
+                        "name": "",
+                        "type": "uint112"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "_address",
+                        "type": "address"
+                    }
+                ],
+                "name": "return_is_claim",
+                "outputs": [
+                    {
+                        "internalType": "bool",
+                        "name": "",
+                        "type": "bool"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "return_claim_number",
+                "outputs": [
+                    {
+                        "internalType": "uint112",
+                        "name": "",
+                        "type": "uint112"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "time",
+                "outputs": [
+                    {
+                        "internalType": "uint32",
+                        "name": "",
+                        "type": "uint32"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "",
+                        "type": "address"
+                    }
+                ],
+                "name": "is_claim",
+                "outputs": [
+                    {
+                        "internalType": "bool",
+                        "name": "",
+                        "type": "bool"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            }
+        ];
+
+        // Contract address
+        const contractAddress = "0x3637924bfe545d264ec720caf41f8152ee876d1c";
+
+        // Language translations
+        const translations = {
+            "en": {
+                "app.title": "The Xin Coin",
+                "hero.title": "TXC Token Portal",
+                "hero.subtitle": "Claim your The Xin Coin tokens and join the decentralized future",
+                "card.title": "Token Claim",
+                "wallet.connectPrompt": "Connect your wallet to claim TXC tokens",
+                "wallet.connectButton": "Connect Wallet",
+                "wallet.infoTitle": "Wallet Information",
+                "wallet.address": "Connected Address:",
+                "wallet.claimStatus": "Claim Status:",
+                "wallet.claimAmount": "Claimable Amount:",
+                "contract.infoTitle": "Contract Information",
+                "contract.totalSupply": "Total Supply:",
+                "contract.totalClaimed": "Total Claimed:",
+                "contract.timeLeft": "Time Remaining:",
+                "contract.progress": "Claim Progress:",
+                "contract.etherscan": "Contract on Etherscan:",
+                "action.view": "View",
+                "action.claim": "Claim TXC Tokens",
+                "status.claimed": "Claimed",
+                "status.notClaimed": "Not Claimed",
+                "status.ended": "Ended",
+                "modal.processing": "Transaction Processing",
+                "modal.success": "Transaction Successful",
+                "modal.failed": "Transaction Failed",
+                "modal.wait": "Please wait for transaction confirmation...",
+                "modal.successMsg": "Your TXC tokens have been successfully claimed!",
+                "action.close": "Close"
+            },
+            "zh": {
+                "app.title": "鑫币",
+                "hero.title": "TXC下一代稳定资产",
+                "hero.subtitle": "领取您的鑫币代币，加入去中心化的未来",
+                "card.title": "代币领取",
+                "wallet.connectPrompt": "连接钱包领取TXC代币",
+                "wallet.connectButton": "连接钱包",
+                "wallet.infoTitle": "钱包信息",
+                "wallet.address": "连接地址:",
+                "wallet.claimStatus": "领取状态:",
+                "wallet.claimAmount": "可领取数量:",
+                "contract.infoTitle": "合约信息",
+                "contract.totalSupply": "总供应量:",
+                "contract.totalClaimed": "已领取总量:",
+                "contract.timeLeft": "剩余时间:",
+                "contract.progress": "领取进度:",
+                "contract.etherscan": "Etherscan合约:",
+                "action.view": "查看",
+                "action.claim": "领取TXC代币",
+                "status.claimed": "已领取",
+                "status.notClaimed": "未领取",
+                "status.ended": "已结束",
+                "modal.processing": "交易处理中",
+                "modal.success": "交易成功",
+                "modal.failed": "交易失败",
+                "modal.wait": "请等待交易确认...",
+                "modal.successMsg": "您的TXC代币已成功领取!",
+                "action.close": "关闭"
+            }
+        };
+
+        let web3;
+        let contract;
+        let accounts = [];
+        let transactionModal;
+        let currentLanguage = 'en';
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Initialize modal
+            transactionModal = new bootstrap.Modal(document.getElementById('transactionModal'));
+            
+            // Set up event listeners
+            document.getElementById('connect-wallet').addEventListener('click', connectWallet);
+            document.getElementById('claim-tokens').addEventListener('click', claimTokens);
+            document.getElementById('en-btn').addEventListener('click', () => switchLanguage('en'));
+            document.getElementById('zh-btn').addEventListener('click', () => switchLanguage('zh'));
+            
+            // Check for Web3 provider
+            if (window.ethereum) {
+                web3 = new Web3(window.ethereum);
+                
+                // Try to connect automatically
+                try {
+                    accounts = await window.ethereum.request({ method: 'eth_accounts' });
+                    if (accounts.length > 0) {
+                        await initApp();
+                    }
+                } catch (error) {
+                    console.error("Auto connect failed:", error);
+                }
+                
+                // Listen for account changes
+                window.ethereum.on('accountsChanged', (newAccounts) => {
+                    accounts = newAccounts;
+                    if (accounts.length > 0) {
+                        initApp();
+                    } else {
+                        // User disconnected
+                        document.getElementById('wallet-not-connected').style.display = 'block';
+                        document.getElementById('wallet-connected').style.display = 'none';
+                    }
+                });
+            } else {
+                alert(currentLanguage === 'en' ? 
+                    "Please install MetaMask or another Web3 wallet to use this feature" :
+                    "请安装MetaMask或其他Web3钱包以使用此功能");
+            }
+        });
+
+        // Connect wallet function
+        async function connectWallet() {
+            try {
+                const connectBtn = document.getElementById('connect-wallet');
+                const originalText = connectBtn.innerHTML;
+                connectBtn.innerHTML = `<span class="spinner"></span> ${currentLanguage === 'en' ? "Connecting..." : "连接中..."}`;
+                connectBtn.disabled = true;
+                
+                accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                await initApp();
+                
+                connectBtn.innerHTML = originalText;
+                connectBtn.disabled = false;
+            } catch (error) {
+                console.error("Wallet connection failed:", error);
+                document.getElementById('connect-wallet').innerHTML = currentLanguage === 'en' ? 
+                    `<i class="fas fa-wallet me-2"></i> Connect Wallet` :
+                    `<i class="fas fa-wallet me-2"></i> 连接钱包`;
+                document.getElementById('connect-wallet').disabled = false;
+                
+                alert(currentLanguage === 'en' ?
+                    "Wallet connection failed: " + error.message :
+                    "钱包连接失败: " + error.message);
+            }
+        }
+
+        // Initialize the app after wallet connection
+        async function initApp() {
+            // Initialize contract
+            contract = new web3.eth.Contract(contractABI, contractAddress);
+            
+            // Show connected state
+            document.getElementById('wallet-not-connected').style.display = 'none';
+            document.getElementById('wallet-connected').style.display = 'block';
+            
+            // Display wallet address with Etherscan link
+            const shortAddress = `${accounts[0].substring(0, 6)}...${accounts[0].substring(38)}`;
+            document.getElementById('wallet-address').textContent = shortAddress;
+            document.getElementById('wallet-etherscan-link').href = `https://sepolia.etherscan.io/address/${accounts[0]}`;
+            
+            // Update contract status
+            await updateContractStatus();
+        }
+
+        // Update contract status information
+        async function updateContractStatus() {
+            try {
+                // Get contract status
+                const [
+                    maxTokenNumber,
+                    allClaim,
+                    time,
+                    hasClaimed,
+                    claimAmount
+                ] = await Promise.all([
+                    contract.methods.max_token_number().call(),
+                    contract.methods.all_claim().call(),
+                    contract.methods.time().call(),
+                    contract.methods.return_is_claim(accounts[0]).call(),
+                    contract.methods.return_claim_number().call()
+                ]);
+                
+                // Calculate progress percentage
+                const progressPercent = (allClaim / maxTokenNumber * 100).toFixed(2);
+                
+                // Update UI
+                document.getElementById('total-supply').textContent = formatEther(maxTokenNumber) + " TXC";
+                document.getElementById('total-claimed').textContent = formatEther(allClaim) + " TXC";
+                document.getElementById('claim-amount').textContent = formatEther(claimAmount) + " TXC";
+                document.getElementById('claim-progress').textContent = progressPercent + "%";
+                document.getElementById('progress-bar').style.width = progressPercent + "%";
+                
+                // Set claim status text based on current language
+                const statusText = hasClaimed ? 
+                    (currentLanguage === 'en' ? translations.en["status.claimed"] : translations.zh["status.claimed"]) :
+                    (currentLanguage === 'en' ? translations.en["status.notClaimed"] : translations.zh["status.notClaimed"]);
+                
+                document.getElementById('claim-status').textContent = statusText;
+                document.getElementById('claim-status').className = hasClaimed ? "status-value text-success" : "status-value text-danger";
+                
+                // Calculate time remaining
+                const currentTime = Math.floor(Date.now() / 1000);
+                const endTime = parseInt(time) + 360 * 24 * 60 * 60; // 360 days
+                const timeLeft = endTime - currentTime;
+                
+                if (timeLeft <= 0) {
+                    const endedText = currentLanguage === 'en' ? translations.en["status.ended"] : translations.zh["status.ended"];
+                    document.getElementById('time-left').textContent = endedText;
+                    document.getElementById('claim-tokens').disabled = true;
+                } else {
+                    const days = Math.floor(timeLeft / (24 * 60 * 60));
+                    const hours = Math.floor((timeLeft % (24 * 60 * 60)) / (60 * 60));
+                    
+                    if (currentLanguage === 'en') {
+                        document.getElementById('time-left').textContent = `${days} days ${hours} hours`;
+                    } else {
+                        document.getElementById('time-left').textContent = `${days}天 ${hours}小时`;
+                    }
+                    
+                    // Disable button if already claimed
+                    if (hasClaimed) {
+                        document.getElementById('claim-tokens').disabled = true;
+                        document.getElementById('claim-tokens').innerHTML = 
+                            `<i class="fas fa-check-circle me-2"></i> ${currentLanguage === 'en' ? translations.en["status.claimed"] : translations.zh["status.claimed"]}`;
+                        document.getElementById('claim-tokens').className = "btn btn-secondary w-100 py-3";
+                    } else {
+                        document.getElementById('claim-tokens').disabled = false;
+                        document.getElementById('claim-tokens').innerHTML = 
+                            `<i class="fas fa-gift me-2"></i> ${currentLanguage === 'en' ? translations.en["action.claim"] : translations.zh["action.claim"]}`;
+                        document.getElementById('claim-tokens').className = "btn btn-success w-100 py-3";
+                    }
+                }
+            } catch (error) {
+                console.error("Failed to update contract status:", error);
+                alert(currentLanguage === 'en' ?
+                    "Failed to get contract information: " + error.message :
+                    "获取合约信息失败: " + error.message);
+            }
+        }
+
+        // Claim tokens function
+        async function claimTokens() {
+            try {
+                const claimBtn = document.getElementById('claim-tokens');
+                const originalText = claimBtn.innerHTML;
+                claimBtn.innerHTML = `<span class="spinner"></span> ${currentLanguage === 'en' ? "Processing..." : "处理中..."}`;
+                claimBtn.disabled = true;
+                
+                // Show transaction modal
+                document.getElementById('transactionModalTitle').textContent = 
+                    currentLanguage === 'en' ? translations.en["modal.processing"] : translations.zh["modal.processing"];
+                document.getElementById('transactionModalBody').innerHTML = 
+                    `<div class="text-center py-4"><div class="spinner"></div><p class="mt-3">${currentLanguage === 'en' ? translations.en["modal.wait"] : translations.zh["modal.wait"]}</p></div>`;
+                transactionModal.show();
+                
+                // Send transaction
+                const tx = await contract.methods.claim().send({ from: accounts[0] });
+                
+                // Update UI
+                document.getElementById('transactionModalTitle').textContent = 
+                    currentLanguage === 'en' ? translations.en["modal.success"] : translations.zh["modal.success"];
+                document.getElementById('transactionModalBody').innerHTML = `
+                    <p>${currentLanguage === 'en' ? "Transaction Hash:" : "交易哈希:"} <a href="https://sepolia.etherscan.io/tx/${tx.transactionHash}" target="_blank" class="tx-hash-link">${tx.transactionHash}</a></p>
+                    <p class="mt-3">${currentLanguage === 'en' ? translations.en["modal.successMsg"] : translations.zh["modal.successMsg"]}</p>
+                    <div class="text-center mt-4">
+                        <i class="fas fa-check-circle text-success" style="font-size: 3rem;"></i>
+                    </div>
+                `;
+                
+                // Update contract status
+                await updateContractStatus();
+                
+                claimBtn.innerHTML = originalText;
+                claimBtn.disabled = false;
+            } catch (error) {
+                console.error("Token claim failed:", error);
+                document.getElementById('transactionModalTitle').textContent = 
+                    currentLanguage === 'en' ? translations.en["modal.failed"] : translations.zh["modal.failed"];
+                document.getElementById('transactionModalBody').innerHTML = `
+                    <p>${currentLanguage === 'en' ? "Error:" : "错误:"} ${error.message}</p>
+                    <div class="text-center mt-4">
+                        <i class="fas fa-times-circle text-danger" style="font-size: 3rem;"></i>
+                    </div>
+                `;
+                
+                document.getElementById('claim-tokens').innerHTML = 
+                    `<i class="fas fa-gift me-2"></i> ${currentLanguage === 'en' ? translations.en["action.claim"] : translations.zh["action.claim"]}`;
+                document.getElementById('claim-tokens').disabled = false;
+            }
+        }
+
+        // Format wei to ether
+        function formatEther(wei) {
+            return (wei / 1e18).toLocaleString(undefined, {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 2
+            });
+        }
+
+        // Switch between English and Chinese
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Update active button
+            document.getElementById('en-btn').classList.toggle('active', lang === 'en');
+            document.getElementById('zh-btn').classList.toggle('active', lang === 'zh');
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Update dynamic text that depends on language
+            if (accounts.length > 0) {
+                updateContractStatus();
+            }
+        }
+    </script>
+</body>
+</html>
